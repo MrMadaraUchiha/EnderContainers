@@ -36,11 +36,7 @@ publishing {
     repositories {
         maven {
             name 'Personal'
-            if (project.version.endsWith('-SNAPSHOT')) {
-                url 'https://repo.utarwyn.fr/snapshots/'
-            } else {
-                url 'https://repo.utarwyn.fr/releases/'
-            }
+            url 'https://repo.repsy.io/mvn/utarwyn/endercontainers'
             credentials {
                 username = 'utarwyn'
                 password = project.findProperty('personal.token') ?: System.getenv('PERSONAL_TOKEN')

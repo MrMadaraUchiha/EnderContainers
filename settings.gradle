@@ -8,7 +8,7 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
-        maven { url 'https://repo.utarwyn.fr' }
+        maven { url 'https://repo.repsy.io/mvn/utarwyn/endercontainers' }
         maven { url 'https://ci.ender.zone/plugin/repository/everything/' }
         maven { url 'https://maven.enginehub.org/repo/' }
     }
