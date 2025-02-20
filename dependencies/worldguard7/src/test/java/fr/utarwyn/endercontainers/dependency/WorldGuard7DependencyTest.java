@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class WorldGuard7DependencyTest {
+class WorldGuard7DependencyTest {
 
     private static boolean serverReplaced = false;
 
@@ -93,7 +93,7 @@ public class WorldGuard7DependencyTest {
     }
 
     @Test
-    public void validateIfOperator() {
+    void validateIfOperator() {
         try {
             when(this.player.isOp()).thenReturn(true);
             this.dependency.validateBlockChestOpening(this.block, this.player);
@@ -103,7 +103,7 @@ public class WorldGuard7DependencyTest {
     }
 
     @Test
-    public void validateIfCanBuildSucceed() {
+    void validateIfCanBuildSucceed() {
         try {
             when(this.regionQuery.testBuild(any(com.sk89q.worldedit.util.Location.class), eq(this.localPlayer), eq(Flags.CHEST_ACCESS)))
                     .thenReturn(true);
@@ -114,13 +114,14 @@ public class WorldGuard7DependencyTest {
     }
 
     @Test
-    public void invalidateIfCanBuildErrored() {
+    void invalidateIfCanBuildErrored() {
         try {
             when(this.regionQuery.testBuild(any(com.sk89q.worldedit.util.Location.class), eq(this.localPlayer), eq(Flags.CHEST_ACCESS)))
                     .thenReturn(false);
             this.dependency.validateBlockChestOpening(this.block, this.player);
             fail("should throw block chest opening exception because build is forbidden by WorldGuard");
         } catch (BlockChestOpeningException ignored) {
+            // ignored
         }
     }
 

@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderContainersTest {
+class EnderContainersTest {
 
     private EnderContainers plugin;
 
@@ -34,7 +34,7 @@ public class EnderContainersTest {
     }
 
     @Test
-    public void enable() {
+    void enable() {
         Map instances = mock(Map.class);
         CommandManager commandManager = mock(CommandManager.class);
 
@@ -52,13 +52,13 @@ public class EnderContainersTest {
     }
 
     @Test
-    public void disable() {
+    void disable() {
         this.plugin.onDisable();
         assertThat(Managers.instances).isEmpty();
     }
 
     @Test
-    public void executeTaskOnMainThread() {
+    void executeTaskOnMainThread() {
         Runnable run = mock(Runnable.class);
 
         // Primary thread
@@ -74,7 +74,7 @@ public class EnderContainersTest {
     }
 
     @Test
-    public void executeTaskOnOtherThread() {
+    void executeTaskOnOtherThread() {
         Runnable run = mock(Runnable.class);
         this.plugin.executeTaskOnOtherThread(run);
         verify(this.plugin.getServer().getScheduler()).runTaskAsynchronously(this.plugin, run);

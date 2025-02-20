@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DatabaseManagerTest {
+class DatabaseManagerTest {
 
     private DatabaseManager databaseManager;
 
@@ -63,7 +63,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void load() {
+    void load() {
         try {
             this.databaseManager.load();
             fail("load must fail because of unknown driver");
@@ -74,13 +74,13 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void unload() {
+    void unload() {
         this.databaseManager.unload();
         verify(this.database).close();
     }
 
     @Test
-    public void ready() {
+    void ready() {
         when(this.database.isRunning()).thenReturn(true);
         assertThat(this.databaseManager.isReady()).isTrue();
         when(this.database.isRunning()).thenReturn(false);
@@ -88,7 +88,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void saveEnderchestInsert() throws SQLException {
+    void saveEnderchestInsert() throws SQLException {
         UUID uuid = UUID.randomUUID();
         ArgumentCaptor<SavingRequest> request = ArgumentCaptor.forClass(SavingRequest.class);
 
@@ -99,7 +99,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void saveEnderchestUpdate() throws SQLException {
+    void saveEnderchestUpdate() throws SQLException {
         UUID uuid = UUID.randomUUID();
         ArgumentCaptor<SavingRequest> request = ArgumentCaptor.forClass(SavingRequest.class);
 
@@ -110,7 +110,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void getAllEnderchests() throws SQLException {
+    void getAllEnderchests() throws SQLException {
         ArgumentCaptor<SelectRequest> request = ArgumentCaptor.forClass(SelectRequest.class);
         when(this.database.execQueryStatement(request.capture())).thenReturn(Collections.singletonList(new DatabaseSet()));
         assertThat(this.databaseManager.getAllEnderchests()).isNotEmpty().hasSize(1);
@@ -118,7 +118,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void getEnderchestsOf() throws SQLException {
+    void getEnderchestsOf() throws SQLException {
         UUID uuid = UUID.randomUUID();
         ArgumentCaptor<SelectRequest> request = ArgumentCaptor.forClass(SelectRequest.class);
 
@@ -128,7 +128,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void replaceEnderchests() throws SQLException {
+    void replaceEnderchests() throws SQLException {
         List<DatabaseSet> sets = Arrays.asList(new DatabaseSet(), new DatabaseSet());
         this.databaseManager.replaceEnderchests(sets);
         verify(this.database).execUpdateStatement(any(DeleteRequest.class));
@@ -136,7 +136,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void getBackups() throws SQLException {
+    void getBackups() throws SQLException {
         when(this.database.execQueryStatement(any(SelectRequest.class)))
                 .thenReturn(Arrays.asList(new DatabaseSet(), new DatabaseSet()));
 
@@ -144,7 +144,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void getBackup() throws SQLException {
+    void getBackup() throws SQLException {
         ArgumentCaptor<SelectRequest> request = ArgumentCaptor.forClass(SelectRequest.class);
 
         when(this.database.execQueryStatement(request.capture())).thenReturn(Collections.singletonList(new DatabaseSet()));
@@ -153,7 +153,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void saveBackup() throws SQLException {
+    void saveBackup() throws SQLException {
         ArgumentCaptor<SavingRequest> request = ArgumentCaptor.forClass(SavingRequest.class);
 
         this.databaseManager.saveBackup("name", 0L, "data", "Utarwyn");
@@ -163,7 +163,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void removeExisitingBackup() throws SQLException {
+    void removeExisitingBackup() throws SQLException {
         ArgumentCaptor<DeleteRequest> request = ArgumentCaptor.forClass(DeleteRequest.class);
 
         DatabaseSet set = new DatabaseSet();
@@ -178,7 +178,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void removeUnknownBackup() throws SQLException {
+    void removeUnknownBackup() throws SQLException {
         assertThat(this.databaseManager.removeBackup("name")).isFalse();
     }
 

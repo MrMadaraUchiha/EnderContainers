@@ -12,13 +12,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlayerDataTest {
+class PlayerDataTest {
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private PlayerData playerData;
 
     @Test
-    public void saveContext() {
+    void saveContext() {
         EnderChest enderchest1 = mock(VanillaEnderChest.class);
         EnderChest enderchest2 = mock(EnderChest.class);
         EnderChest enderchest3 = mock(EnderChest.class);

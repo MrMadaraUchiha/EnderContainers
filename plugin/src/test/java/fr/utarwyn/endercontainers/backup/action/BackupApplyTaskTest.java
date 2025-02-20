@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupApplyTaskTest {
+class BackupApplyTaskTest {
 
     private EnderChestManager enderChestManager;
 
@@ -29,7 +29,7 @@ public class BackupApplyTaskTest {
     }
 
     @Test
-    public void run() throws TestInitializationException {
+    void run() throws TestInitializationException {
         EnderContainers plugin = TestHelper.getPlugin();
         BackupManager manager = mock(BackupManager.class);
         Backup backup = mock(Backup.class);

@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class AbstractInventoryHolderTest {
+class AbstractInventoryHolderTest {
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private AbstractInventoryHolder holder;
@@ -33,7 +33,7 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void itemMovingRestricted() {
+    void itemMovingRestricted() {
         this.holder.itemMovingRestricted = true;
         assertThat(this.holder.isItemMovingRestricted()).isTrue();
         this.holder.itemMovingRestricted = false;
@@ -41,7 +41,7 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void isUsed() {
+    void isUsed() {
         // With no inventory
         assertThat(this.holder.isUsed()).isFalse();
         this.holder.inventory = this.inventory;
@@ -53,14 +53,14 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void inventory() {
+    void inventory() {
         assertThat(this.holder.inventory).isNull();
         this.holder.inventory = this.inventory;
         assertThat(this.holder.getInventory()).isNotNull().isEqualTo(this.holder.inventory);
     }
 
     @Test
-    public void reloadInventory() {
+    void reloadInventory() {
         int rows = 5;
         String title = "very long default inventory title";
 
@@ -89,7 +89,7 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void open() {
+    void open() {
         Player player = mock(Player.class);
 
         this.holder.inventory = this.inventory;
@@ -101,7 +101,7 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void close() {
+    void close() {
         Player player = mock(Player.class);
 
         this.holder.inventory = this.inventory;
@@ -113,7 +113,7 @@ public class AbstractInventoryHolderTest {
     }
 
     @Test
-    public void filledSlotsNb() {
+    void filledSlotsNb() {
         this.holder.inventory = this.inventory;
 
         when(this.holder.inventory.getContents()).thenReturn(this.getFakeItemList(27));

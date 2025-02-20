@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class ReloadCommandTest extends CommandTestHelper<ReloadCommand> {
+class ReloadCommandTest extends CommandTestHelper<ReloadCommand> {
 
     @Mock
     private Player player;
@@ -34,20 +34,20 @@ public class ReloadCommandTest extends CommandTestHelper<ReloadCommand> {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("reload");
         assertThat(this.command.getAliases()).containsExactly("rl");
     }
 
     @Test
-    public void successful() {
+    void successful() {
         this.givePermission(this.player);
         this.run(this.player);
         verify(this.player).sendMessage(contains("reloaded"));
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         this.run(this.player);
         this.verifyNoPerm(this.player);
     }

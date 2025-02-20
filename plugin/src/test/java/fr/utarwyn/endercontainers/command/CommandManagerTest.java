@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CommandManagerTest {
+class CommandManagerTest {
 
     private static final String NAME = "name";
     private static final String ALIAS = "alias";
@@ -42,7 +42,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void registerCommand() throws ReflectiveOperationException {
+    void registerCommand() throws ReflectiveOperationException {
         CommandMap commandMap = mock(CommandMap.class);
         registerCommandMap(commandMap);
 
@@ -52,7 +52,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void unregisterCommand() {
+    void unregisterCommand() {
         CommandMap commandMap = new SimpleCommandMap(Bukkit.getServer());
         registerCommandMap(commandMap);
 
@@ -72,7 +72,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void cannotUnregisterIfPluginCommand() {
+    void cannotUnregisterIfPluginCommand() {
         CommandMap commandMap = new SimpleCommandMap(Bukkit.getServer());
         registerCommandMap(commandMap);
 

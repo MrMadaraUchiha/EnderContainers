@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupManagerTest {
+class BackupManagerTest {
 
     private BackupManager manager;
 
@@ -30,7 +30,7 @@ public class BackupManagerTest {
     }
 
     @Test
-    public void loadAndGetters() throws TestInitializationException {
+    void loadAndGetters() throws TestInitializationException {
         StorageManager storageManager = mock(StorageManager.class);
         BackupsData storage = mock(BackupsData.class);
         List<Backup> backupList = new ArrayList<>();
@@ -43,13 +43,13 @@ public class BackupManagerTest {
     }
 
     @Test
-    public void unload() {
+    void unload() {
         this.manager.unload();
         assertThat(this.manager.getStorage()).isNull();
     }
 
     @Test
-    public void getBackupByName() throws TestInitializationException {
+    void getBackupByName() throws TestInitializationException {
         Backup backup = mock(Backup.class);
         List<Backup> backupList = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class BackupManagerTest {
     }
 
     @Test
-    public void createBackup() throws TestInitializationException {
+    void createBackup() throws TestInitializationException {
         List<Backup> backupList = new ArrayList<>();
 
         TestHelper.setUpServer();
@@ -87,7 +87,7 @@ public class BackupManagerTest {
     }
 
     @Test
-    public void applyBackup() throws TestInitializationException {
+    void applyBackup() throws TestInitializationException {
         List<Backup> backupList = new ArrayList<>();
 
         TestHelper.setUpServer();
@@ -110,7 +110,7 @@ public class BackupManagerTest {
     }
 
     @Test
-    public void removeBackup() throws TestInitializationException {
+    void removeBackup() throws TestInitializationException {
         List<Backup> backupList = new ArrayList<>();
 
         TestHelper.setUpServer();

@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UpdateCommandTest extends CommandTestHelper<UpdateCommand> {
+class UpdateCommandTest extends CommandTestHelper<UpdateCommand> {
 
     @Mock
     private Player player;
@@ -39,25 +39,25 @@ public class UpdateCommandTest extends CommandTestHelper<UpdateCommand> {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("update");
     }
 
     @Test
-    public void sentByPlayer() {
+    void sentByPlayer() {
         this.givePermission(this.player);
         this.run(this.player);
         verify(this.updater).notifyPlayer(this.player);
     }
 
     @Test
-    public void sentByConsole() {
+    void sentByConsole() {
         this.run(mock(ConsoleCommandSender.class));
         verify(this.updater).notifyConsole();
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         this.run(this.player);
         this.verifyNoPerm(this.player);
     }

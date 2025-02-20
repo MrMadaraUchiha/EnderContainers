@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class InventoryManagerTest {
+class InventoryManagerTest {
 
     private InventoryManager manager;
 
@@ -53,7 +53,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void initialize() throws TestInitializationException {
+    void initialize() throws TestInitializationException {
         TestHelper.setupManager(this.manager);
 
         this.manager.initialize();
@@ -64,7 +64,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryClickInside() {
+    void inventoryClickInside() {
         when(this.inventory.getSize()).thenReturn(27);
 
         InventoryClickEvent event = new InventoryClickEvent(
@@ -86,7 +86,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryClickOutside() {
+    void inventoryClickOutside() {
         when(this.inventory.getSize()).thenReturn(27);
 
         // With an unvalid slot position in the inventory
@@ -121,7 +121,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryClickSpectateMode() {
+    void inventoryClickSpectateMode() {
         when(this.inventory.getSize()).thenReturn(27);
 
         InventoryClickEvent event = new InventoryClickEvent(
@@ -137,7 +137,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryClickOtherInventory() {
+    void inventoryClickOtherInventory() {
         when(this.inventory.getHolder()).thenReturn(mock(Furnace.class));
 
         InventoryClickEvent event = new InventoryClickEvent(
@@ -150,7 +150,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryDragInside() {
+    void inventoryDragInside() {
         when(this.inventory.getSize()).thenReturn(27);
 
         InventoryDragEvent event = new InventoryDragEvent(
@@ -172,7 +172,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryDragOutside() {
+    void inventoryDragOutside() {
         when(this.inventory.getSize()).thenReturn(27);
 
         InventoryDragEvent event = new InventoryDragEvent(
@@ -195,7 +195,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryDragSpectateMode() {
+    void inventoryDragSpectateMode() {
         when(this.inventory.getSize()).thenReturn(27);
 
         InventoryDragEvent event = new InventoryDragEvent(
@@ -209,7 +209,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryDragOtherInventory() {
+    void inventoryDragOtherInventory() {
         when(this.inventory.getHolder()).thenReturn(mock(Furnace.class));
 
         InventoryDragEvent event = new InventoryDragEvent(
@@ -222,7 +222,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void inventoryClose() {
+    void inventoryClose() {
         InventoryCloseEvent event = new InventoryCloseEvent(inventoryView);
 
         this.manager.onInventoryClose(event);
@@ -230,7 +230,7 @@ public class InventoryManagerTest {
     }
 
     @Test
-    public void closeAll() {
+    void closeAll() {
         Inventory enderchestInv = mock(Inventory.class);
         InventoryView enderchestView = mock(InventoryView.class);
         Player player = mock(Player.class);

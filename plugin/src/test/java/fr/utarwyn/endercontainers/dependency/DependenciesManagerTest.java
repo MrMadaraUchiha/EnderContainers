@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DependenciesManagerTest {
+class DependenciesManagerTest {
 
     private DependenciesManager manager;
 
@@ -40,13 +40,13 @@ public class DependenciesManagerTest {
     }
 
     @Test
-    public void loadWithoutDependency() {
+    void loadWithoutDependency() {
         this.manager.load();
         assertThat(this.manager.getDependencies()).isNotNull().isEmpty();
     }
 
     @Test
-    public void loadWithDependencies() {
+    void loadWithDependencies() {
         this.registerFakePlugin("WorldGuard", "7.6");
         this.manager.load();
 
@@ -59,7 +59,7 @@ public class DependenciesManagerTest {
     }
 
     @Test
-    public void unload() {
+    void unload() {
         Dependency dependency = mock(Dependency.class);
 
         this.registerFakeDependencies(dependency);
@@ -70,7 +70,7 @@ public class DependenciesManagerTest {
     }
 
     @Test
-    public void validateBlockChestOpening() throws BlockChestOpeningException {
+    void validateBlockChestOpening() throws BlockChestOpeningException {
         Dependency dep1 = mock(Dependency.class);
         Dependency dep2 = mock(Dependency.class);
         Block block = mock(Block.class);
@@ -84,7 +84,7 @@ public class DependenciesManagerTest {
     }
 
     @Test
-    public void blockChestOpeningException() {
+    void blockChestOpeningException() {
         Map<String, String> parameters = Collections.singletonMap("faction", "test");
 
         BlockChestOpeningException exception1 = new BlockChestOpeningException();
@@ -108,16 +108,16 @@ public class DependenciesManagerTest {
      * @param version version of the fake plugin
      */
     private void registerFakePlugin(String name, String version) {
-        PluginManager manager = Bukkit.getServer().getPluginManager();
+        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         Plugin plugin = mock(Plugin.class);
         PluginDescriptionFile descriptionFile = mock(PluginDescriptionFile.class);
 
         when(plugin.getName()).thenReturn(name);
         when(plugin.getDescription()).thenReturn(descriptionFile);
         when(descriptionFile.getVersion()).thenReturn(version);
-        when(manager.isPluginEnabled(anyString())).thenReturn(false);
-        when(manager.isPluginEnabled(name)).thenReturn(true);
-        when(manager.getPlugin(name)).thenReturn(plugin);
+        when(pluginManager.isPluginEnabled(anyString())).thenReturn(false);
+        when(pluginManager.isPluginEnabled(name)).thenReturn(true);
+        when(pluginManager.getPlugin(name)).thenReturn(plugin);
     }
 
     /**

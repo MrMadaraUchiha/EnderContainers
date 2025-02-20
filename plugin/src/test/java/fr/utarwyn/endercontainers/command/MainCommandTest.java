@@ -17,7 +17,7 @@ import static org.mockito.Mockito.contains;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class MainCommandTest {
+class MainCommandTest {
 
     private MainCommand command;
 
@@ -31,13 +31,13 @@ public class MainCommandTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("endercontainers");
         assertThat(this.command.getAliases()).containsExactly("ecp");
     }
 
     @Test
-    public void perform() {
+    void perform() {
         this.command.perform(this.player);
         // Verify that basic informations are sent to the player
         verify(this.player).sendMessage(contains("Utarwyn"));

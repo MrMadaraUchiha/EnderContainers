@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RemoveCommandTest {
+class RemoveCommandTest {
 
     @Mock
     private BackupManager backupManager;
@@ -31,14 +31,14 @@ public class RemoveCommandTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         RemoveCommand command = new RemoveCommand(this.backupManager);
         assertThat(command.manager).isNotNull().isEqualTo(this.backupManager);
         assertThat(command.getName()).isEqualTo("remove");
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         RemoveCommand command = spy(new RemoveCommand(this.backupManager));
         command.onCommand(this.player, command, null, new String[]{"noperm"});
         verify(command, never()).perform(this.player);

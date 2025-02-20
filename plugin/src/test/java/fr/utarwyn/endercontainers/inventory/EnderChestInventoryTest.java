@@ -29,7 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderChestInventoryTest {
+class EnderChestInventoryTest {
 
     private EnderChestInventory inventory;
 
@@ -50,14 +50,14 @@ public class EnderChestInventoryTest {
     }
 
     @Test
-    public void prepare() {
+    void prepare() {
         // some fake items stored in the chest
         ItemStack[] containerItems = new ItemStack[27];
         ItemStack item1 = new ItemStack(Material.JUKEBOX, 2);
         ItemStack item2 = new ItemStack(Material.BONE_MEAL, 17);
         ItemStack item3 = new ItemStack(Material.GOLD_INGOT, 25);
 
-        when(this.chest.getContents()).thenReturn(new ConcurrentHashMap<Integer, ItemStack>() {{
+        when(this.chest.getContents()).thenReturn(new ConcurrentHashMap<>() {{
             put(4, item1);
             put(7, item2);
             put(38, item3);
@@ -85,7 +85,7 @@ public class EnderChestInventoryTest {
     }
 
     @Test
-    public void updateContentsFromContainer() {
+    void updateContentsFromContainer() {
         // Create fake items for the testing container
         ItemStack[] itemList = new ItemStack[27];
         itemList[2] = new ItemStack(Material.ENDER_CHEST);
@@ -93,7 +93,7 @@ public class EnderChestInventoryTest {
         itemList[9] = new ItemStack(Material.DIRT, 20);
 
         // Reload items of the chest
-        when(this.chest.getContents()).thenReturn(new ConcurrentHashMap<Integer, ItemStack>() {{
+        when(this.chest.getContents()).thenReturn(new ConcurrentHashMap<>() {{
             put(1, new ItemStack(Material.DIAMOND, 3));
             // This item should be replaced by the one in the fake container:
             put(9, new ItemStack(Material.GOLDEN_AXE, 1));
@@ -118,7 +118,7 @@ public class EnderChestInventoryTest {
     }
 
     @Test
-    public void saveOnClose() throws TestInitializationException {
+    void saveOnClose() throws TestInitializationException {
         EnderChestManager manager = mock(EnderChestManager.class);
         Player viewer = mock(Player.class);
         Location location = mock(Location.class);
@@ -148,7 +148,7 @@ public class EnderChestInventoryTest {
     }
 
     @Test
-    public void globalSoundOnClose() {
+    void globalSoundOnClose() {
         Player viewer = mock(Player.class);
         Location location = mock(Location.class);
         World world = mock(World.class);
@@ -161,7 +161,7 @@ public class EnderChestInventoryTest {
     }
 
     @Test
-    public void playerSoundOnClose() throws TestInitializationException {
+    void playerSoundOnClose() throws TestInitializationException {
         Player viewer = mock(Player.class);
         Location location = mock(Location.class);
 

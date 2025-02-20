@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
  * @since 2.2.1
  */
 @ExtendWith(MockitoExtension.class)
-public class UpdaterTest {
+class UpdaterTest {
 
     private Updater updater;
 
@@ -57,7 +57,7 @@ public class UpdaterTest {
     }
 
     @Test
-    public void withUpdate() {
+    void withUpdate() {
         when(this.plugin.getDescription().getVersion()).thenReturn("1.0.0");
         this.updater.load();
 
@@ -67,7 +67,7 @@ public class UpdaterTest {
     }
 
     @Test
-    public void withoutUpdate() {
+    void withoutUpdate() {
         String currentVersion = "99.99.99-dev";
         when(this.plugin.getDescription().getVersion()).thenReturn(currentVersion);
         this.updater.load();
@@ -79,7 +79,7 @@ public class UpdaterTest {
     }
 
     @Test
-    public void playerJoinUpdateNotification() throws TestInitializationException {
+    void playerJoinUpdateNotification() throws TestInitializationException {
         PlayerJoinEvent event = new PlayerJoinEvent(this.player, "");
 
         // Register a fake updater
@@ -106,7 +106,7 @@ public class UpdaterTest {
     }
 
     @Test
-    public void unload() {
+    void unload() {
         this.updater.unload();
     }
 

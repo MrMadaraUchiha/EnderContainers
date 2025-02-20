@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class MySQLAdapterTest {
+class MySQLAdapterTest {
 
     private MySQLAdapter adapter;
 
@@ -25,7 +25,7 @@ public class MySQLAdapterTest {
     }
 
     @Test
-    public void getServerUrl() {
+    void getServerUrl() {
         when(this.pluginConfig.getMysqlHost()).thenReturn("localhost");
         when(this.pluginConfig.getMysqlPort()).thenReturn(3307);
 
@@ -34,13 +34,13 @@ public class MySQLAdapterTest {
     }
 
     @Test
-    public void getSourceUrl() {
+    void getSourceUrl() {
         assertThat(this.adapter.getSourceUrl("localhost:3307", "database"))
                 .isEqualTo("jdbc:mysql://localhost:3307/database");
     }
 
     @Test
-    public void configure() {
+    void configure() {
         HikariConfig config = new HikariConfig();
 
         when(this.pluginConfig.getMysqlUser()).thenReturn("username");

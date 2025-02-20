@@ -8,7 +8,7 @@ Works with Bukkit/Spigot 1.8 to 1.21!
 
 <p align="center">
     <a href="https://github.com/utarwyn/EnderContainers/actions">
-        <img src="https://github.com/utarwyn/EnderContainers/workflows/Java%20Integration/badge.svg" alt="Java CI">
+        <img src="https://github.com/utarwyn/EnderContainers/workflows/Build/badge.svg" alt="Build CI">
     </a>
     <a href="https://sonarcloud.io/dashboard?id=fr.utarwyn%3Aendercontainers">
         <img src="https://sonarcloud.io/api/project_badges/measure?project=fr.utarwyn%3Aendercontainers&metric=alert_status" alt="SonarQube Quality gate">

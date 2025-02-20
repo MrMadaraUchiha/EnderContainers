@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class VanillaEnderChestTest {
+class VanillaEnderChestTest {
 
     @Mock
     private PlayerContext context;
@@ -39,7 +39,7 @@ public class VanillaEnderChestTest {
     }
 
     @BeforeEach
-    public void setUp() throws PlayerOfflineLoadException {
+    public void setUp() {
         this.player = TestHelper.getPlayer();
 
         lenient().when(this.player.getEnderChest()).thenReturn(inventory);
@@ -49,16 +49,16 @@ public class VanillaEnderChestTest {
     }
 
     @Test
-    public void initialize() {
+    void initialize() {
         assertThat(this.chest.container).isNull();
-        assertThat(this.chest.getNum()).isEqualTo(0);
+        assertThat(this.chest.getNum()).isZero();
         assertThat(this.chest.getRows()).isEqualTo(3);
         assertThat(this.chest.getMaxSize()).isEqualTo(27);
         assertThat(this.chest.getOwnerAsPlayer()).isEqualTo(this.player);
     }
 
     @Test
-    public void isContainerUsed() {
+    void isContainerUsed() {
         // No viewer
         when(this.inventory.getViewers()).thenReturn(Collections.emptyList());
         assertThat(this.chest.isContainerUsed()).isFalse();
@@ -69,7 +69,7 @@ public class VanillaEnderChestTest {
     }
 
     @Test
-    public void isUsedBy() {
+    void isUsedBy() {
         Player viewer = mock(Player.class);
         when(this.inventory.getViewers()).thenReturn(Collections.singletonList(viewer));
 
@@ -78,19 +78,19 @@ public class VanillaEnderChestTest {
     }
 
     @Test
-    public void updateRowCount() {
+    void updateRowCount() {
         this.chest.updateRowCount();
         assertThat(this.chest.getRows()).isEqualTo(3);
     }
 
     @Test
-    public void doNotUpdateContainer() {
+    void doNotUpdateContainer() {
         this.chest.updateContainer();
         assertThat(this.chest.container).isNull();
     }
 
     @Test
-    public void getSize() {
+    void getSize() {
         // Inventory without owner
         when(this.context.getOwnerAsObject()).thenReturn(null);
         assertThat((new VanillaEnderChest(this.context)).getSize()).isZero();
@@ -108,19 +108,20 @@ public class VanillaEnderChestTest {
     }
 
     @Test
-    public void openContainerFor() {
+    void openContainerFor() {
         this.chest.openContainerFor(this.player);
         verify(this.player).openInventory(this.inventory);
     }
 
     @Test
-    public void unknownPlayer() {
+    void unknownPlayer() {
         when(this.context.getOwnerAsObject()).thenReturn(null);
         this.chest = new VanillaEnderChest(this.context);
 
         try {
             this.chest.loadOfflinePlayer();
         } catch (PlayerOfflineLoadException ignored) {
+            // ignored
         }
 
         assertThat(this.chest.isContainerUsed()).isFalse();

@@ -13,7 +13,7 @@ import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class HelpCommandTest extends CommandTestHelper<HelpCommand> {
+class HelpCommandTest extends CommandTestHelper<HelpCommand> {
 
     @Mock
     private Player player;
@@ -24,13 +24,13 @@ public class HelpCommandTest extends CommandTestHelper<HelpCommand> {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("help");
         assertThat(this.command.getAliases()).containsExactly("h", "?");
     }
 
     @Test
-    public void withPermission() {
+    void withPermission() {
         when(this.player.hasPermission(anyString())).thenReturn(false);
         when(this.player.hasPermission("endercontainers.reload")).thenReturn(true);
         when(this.player.hasPermission("endercontainers.update")).thenReturn(true);
@@ -42,7 +42,7 @@ public class HelpCommandTest extends CommandTestHelper<HelpCommand> {
     }
 
     @Test
-    public void withoutPermission() {
+    void withoutPermission() {
         this.run(this.player);
         verify(this.player).sendMessage(contains("§m/ecp update"));
         verify(this.player).sendMessage(contains("§m/ecp reload"));

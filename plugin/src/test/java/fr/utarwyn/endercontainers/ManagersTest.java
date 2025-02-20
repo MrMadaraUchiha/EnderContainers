@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class ManagersTest {
+class ManagersTest {
 
     @Mock
     private AbstractManager manager;
@@ -22,7 +22,7 @@ public class ManagersTest {
     }
 
     @Test
-    public void register() throws TestInitializationException {
+    void register() throws TestInitializationException {
         EnderContainers plugin = TestHelper.getPlugin();
 
         assertThat(Managers.instances).isEmpty();
@@ -39,7 +39,7 @@ public class ManagersTest {
     }
 
     @Test
-    public void get() {
+    void get() {
         Managers.instances.put(this.manager.getClass(), this.manager);
 
         assertThat(Managers.get(this.manager.getClass())).isNotNull()
@@ -55,7 +55,7 @@ public class ManagersTest {
     }
 
     @Test
-    public void reload() {
+    void reload() {
         Managers.instances.put(this.manager.getClass(), this.manager);
 
         assertThat(Managers.reload(this.manager.getClass())).isTrue();

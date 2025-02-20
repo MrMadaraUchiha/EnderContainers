@@ -31,7 +31,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlayerContextTest {
+class PlayerContextTest {
 
     private static final int ENDERCHEST_AMOUNT = 27;
 
@@ -63,33 +63,33 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.context.getOwner()).isEqualTo(this.player.getUniqueId());
         assertThat(this.context.getOwnerAsObject()).isEqualTo(this.player);
         assertThat(this.context.getData()).isEqualTo(this.playerData);
     }
 
     @Test
-    public void offlineOwner() {
+    void offlineOwner() {
         assertThat(new PlayerContext(UUID.randomUUID()).getOwnerAsObject()).isNull();
     }
 
     @Test
-    public void getChest() {
+    void getChest() {
         assertThat(this.context.getChest(0)).isPresent();
         assertThat(this.context.getChest(ENDERCHEST_AMOUNT - 1)).isPresent();
         assertThat(this.context.getChest(ENDERCHEST_AMOUNT)).isNotPresent();
     }
 
     @Test
-    public void getAccessibleChestCount() {
+    void getAccessibleChestCount() {
         assertThat(this.context.getAccessibleChestCount()).isEqualTo(1);
         when(this.player.hasPermission(anyString())).thenReturn(true);
         assertThat(this.context.getAccessibleChestCount()).isEqualTo(ENDERCHEST_AMOUNT);
     }
 
     @Test
-    public void isChestsUnused() {
+    void isChestsUnused() {
         assertThat(this.context.isChestsUnused()).isTrue();
 
         when(this.player.getEnderChest().getViewers()).thenReturn(Collections.singletonList(this.player));
@@ -97,7 +97,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void loadOfflinePlayerProfile() throws PlayerOfflineLoadException {
+    void loadOfflinePlayerProfile() throws PlayerOfflineLoadException {
         // by default, method can be called but do nothing
         this.context.loadOfflinePlayerProfile();
 
@@ -115,17 +115,18 @@ public class PlayerContextTest {
         try {
             this.context.loadOfflinePlayerProfile();
         } catch (PlayerOfflineLoadException ignored) {
+            // ignored
         }
     }
 
     @Test
-    public void openListInventory() {
+    void openListInventory() {
         this.context.openListInventory(this.player);
         assertThatPlayerOpenListInventory();
     }
 
     @Test
-    public void openListInventoryWithOneChest() throws TestInitializationException {
+    void openListInventoryWithOneChest() throws TestInitializationException {
         // If only 1 chest accessible, but can see other enderchests, so open list inventory
         TestHelper.overrideConfigurationValue("onlyShowAccessibleEnderchests", false);
         this.context.openListInventory(this.player);
@@ -133,7 +134,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void openListInventoryWithOneChestAndOthersAreHidden() throws TestInitializationException {
+    void openListInventoryWithOneChestAndOthersAreHidden() throws TestInitializationException {
         // If only 1 chest accessible, open it directly
         TestHelper.overrideConfigurationValue("onlyShowAccessibleEnderchests", true);
         this.context.openListInventory(this.player);
@@ -141,7 +142,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void openListInventorySound() {
+    void openListInventorySound() {
         Block block = mock(Block.class);
         Location location = mock(Location.class);
         World world = mock(World.class);
@@ -155,7 +156,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void openEnderchestInventory() {
+    void openEnderchestInventory() {
         assertThat(this.context.openEnderchestInventory(this.player, 0)).isTrue();
         assertThat(this.context.openEnderchestInventory(this.player, 2)).isFalse();
         when(this.player.hasPermission(anyString())).thenReturn(true);
@@ -164,7 +165,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void update() {
+    void update() {
         this.context.update();
         Optional<EnderChest> chest = this.context.getChest(1);
         assertThat(chest).isPresent();
@@ -172,7 +173,7 @@ public class PlayerContextTest {
     }
 
     @Test
-    public void save() {
+    void save() {
         this.context.save();
         verify(this.playerData).saveContext(any());
     }

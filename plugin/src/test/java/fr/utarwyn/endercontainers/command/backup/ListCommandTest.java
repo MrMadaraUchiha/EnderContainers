@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ListCommandTest {
+class ListCommandTest {
 
     @Mock
     private BackupManager backupManager;
@@ -32,21 +32,21 @@ public class ListCommandTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         ListCommand command = new ListCommand(this.backupManager);
         assertThat(command.manager).isNotNull().isEqualTo(this.backupManager);
         assertThat(command.getName()).isEqualTo("list");
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         ListCommand command = spy(new ListCommand(this.backupManager));
         command.onCommand(this.player, command, null, new String[]{"noperm"});
         verify(command, never()).perform(this.player);
     }
 
     @Test
-    public void performWithNoBackup() {
+    void performWithNoBackup() {
         ListCommand command = new ListCommand(this.backupManager);
 
         when(player.hasPermission(anyString())).thenReturn(true);
@@ -58,7 +58,7 @@ public class ListCommandTest {
     }
 
     @Test
-    public void perform() {
+    void perform() {
         ListCommand command = new ListCommand(this.backupManager);
         List<Backup> backups = Arrays.asList(
                 new Backup("backup1", null, "user1"),

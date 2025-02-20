@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BackupTest {
+class BackupTest {
 
     @Test
-    public void backupCreation() {
+    void backupCreation() {
         String name = "test";
         Timestamp date = new Timestamp(1);
         String createdBy = "Utarwyn";

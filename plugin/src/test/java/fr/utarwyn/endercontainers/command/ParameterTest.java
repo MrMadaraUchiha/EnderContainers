@@ -11,25 +11,25 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class ParameterTest {
 
     @Test
-    public void staticParameters() {
+    void staticParameters() {
         assertThat(Parameter.integer()).isNotEqualTo(Parameter.integer());
         assertThat(Parameter.string()).isNotEqualTo(Parameter.string());
     }
 
     @Test
-    public void isNeeded() {
+    void isNeeded() {
         Parameter<Integer> parameter = Parameter.integer();
         assertThat(parameter.isNeeded()).isTrue();
     }
 
     @Test
-    public void isCustomCompletions() {
+    void isCustomCompletions() {
         Parameter<Integer> parameter = Parameter.integer();
         assertThat(parameter.isCustomCompletions()).isTrue();
     }
 
     @Test
-    public void withPlayersCompletions() {
+    void withPlayersCompletions() {
         Parameter<String> parameter = Parameter.string();
 
         assertThat(parameter.isCustomCompletions()).isTrue();
@@ -39,7 +39,7 @@ public class ParameterTest {
     }
 
     @Test
-    public void withCustomCompletions() {
+    void withCustomCompletions() {
         Parameter<String> parameter = Parameter.string();
         List<String> completions = Arrays.asList("eza", "123");
 
@@ -54,13 +54,13 @@ public class ParameterTest {
     }
 
     @Test
-    public void optional() {
+    void optional() {
         Parameter<Integer> parameter = Parameter.integer();
         assertThat(parameter.optional().isNeeded()).isFalse();
     }
 
     @Test
-    public void checkValue() {
+    void checkValue() {
         Parameter<Integer> parameter = Parameter.integer();
 
         assertThat(parameter.checkValue("123")).isTrue();
@@ -71,7 +71,7 @@ public class ParameterTest {
     }
 
     @Test
-    public void convertValue() {
+    void convertValue() {
         Parameter<Integer> parameter = Parameter.integer();
 
         assertThat(parameter.convertValue("123")).isEqualTo(123);

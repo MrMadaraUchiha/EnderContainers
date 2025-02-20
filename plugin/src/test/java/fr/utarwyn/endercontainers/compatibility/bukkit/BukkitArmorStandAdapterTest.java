@@ -15,7 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BukkitArmorStandAdapterTest {
+class BukkitArmorStandAdapterTest {
 
     private static final String TEXT = "text";
 
@@ -52,7 +51,7 @@ public class BukkitArmorStandAdapterTest {
     }
 
     @Test
-    public void spawnArmorStandFor() throws TestInitializationException {
+    void spawnArmorStandFor() throws TestInitializationException {
         doReturn(this.armorStand).when(this.world).spawnEntity(any(Location.class), eq(EntityType.ARMOR_STAND));
 
         this.armorStandAdapter.spawnArmorStandFor(TestHelper.getPlugin(), this.observer, this.location, TEXT);
@@ -63,7 +62,7 @@ public class BukkitArmorStandAdapterTest {
     }
 
     @Test
-    public void destroyArmorStandFor() {
+    void destroyArmorStandFor() {
         List<Entity> entities = Arrays.asList(mock(Entity.class), mock(Entity.class));
 
         doReturn(1).when(entities.get(0)).getEntityId();

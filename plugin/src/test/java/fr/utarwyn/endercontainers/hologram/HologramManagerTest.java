@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class HologramManagerTest {
+class HologramManagerTest {
 
     private HologramManager manager;
 
@@ -80,7 +80,7 @@ public class HologramManagerTest {
     }
 
     @Test
-    public void taskTimer() throws TestInitializationException {
+    void taskTimer() throws TestInitializationException {
         this.manager.load();
         verify(Bukkit.getServer().getScheduler()).runTaskTimer(
                 eq(TestHelper.getPlugin()), eq(this.manager), anyLong(), anyLong()
@@ -88,7 +88,7 @@ public class HologramManagerTest {
     }
 
     @Test
-    public void unload() {
+    void unload() {
         this.manager.load();
         this.manager.unload();
         assertThat(this.manager.task).isNull();
@@ -96,7 +96,7 @@ public class HologramManagerTest {
     }
 
     @Test
-    public void spawnHologram() throws BlockChestOpeningException, TestInitializationException, HologramException {
+    void spawnHologram() throws BlockChestOpeningException, TestInitializationException, HologramException {
         assertThat(this.manager.holograms).isNull();
 
         doReturn(5).when(this.armorStandAdapter).spawnArmorStandFor(
@@ -121,7 +121,7 @@ public class HologramManagerTest {
     }
 
     @Test
-    public void disabledByDependency() throws BlockChestOpeningException {
+    void disabledByDependency() throws BlockChestOpeningException {
         doThrow(new BlockChestOpeningException()).when(this.dependenciesManager)
                 .validateBlockChestOpening(this.targetedBlock, this.observer);
 
@@ -130,14 +130,14 @@ public class HologramManagerTest {
     }
 
     @Test
-    public void disabledWorld() {
+    void disabledWorld() {
         when(this.observer.getWorld().getName()).thenReturn("disabled");
         this.manager.load();
         assertThat(this.manager.holograms).isEmpty();
     }
 
     @Test
-    public void dispawnHologram() throws HologramException {
+    void dispawnHologram() throws HologramException {
         // Spawn hologram after first load
         this.manager.load();
         this.manager.armorStandAdapter = this.armorStandAdapter;

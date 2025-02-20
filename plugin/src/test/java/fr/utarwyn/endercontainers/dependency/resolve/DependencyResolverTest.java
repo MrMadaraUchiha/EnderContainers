@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DependencyResolverTest {
+class DependencyResolverTest {
 
     @Mock
     private PluginManager pluginManager;
@@ -41,7 +41,7 @@ public class DependencyResolverTest {
     }
 
     @Test
-    public void resolveFailure() {
+    void resolveFailure() {
         DependencyResolver resolver = new DependencyResolver(this.pluginManager);
 
         // Empty name
@@ -65,7 +65,7 @@ public class DependencyResolverTest {
     }
 
     @Test
-    public void resolveWithUse() {
+    void resolveWithUse() {
         DependencyResolver resolver = new DependencyResolver(this.pluginManager)
                 .name("Plugin").use(DependencyMock.class);
 
@@ -82,7 +82,7 @@ public class DependencyResolverTest {
     }
 
     @Test
-    public void resolveWithMatcher() {
+    void resolveWithMatcher() {
         DependencyResolver resolver = new DependencyResolver(this.pluginManager)
                 .name("Plugin").matchVersion("^2.*", Dependency.class);
 
@@ -95,7 +95,7 @@ public class DependencyResolverTest {
     }
 
     @Test
-    public void resolvingOrder() {
+    void resolvingOrder() {
         DependencyResolver resolver = new DependencyResolver(this.pluginManager)
                 .name("Plugin")
                 .matchAuthor("Utarwyn", DependencyMock.class)

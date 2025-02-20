@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupCreateTaskTest {
+class BackupCreateTaskTest {
 
     private static final String NAME = "TestBackup";
 
@@ -41,7 +41,7 @@ public class BackupCreateTaskTest {
     }
 
     @Test
-    public void valid() {
+    void valid() {
         when(storage.saveNewBackup(any())).thenReturn(true);
         when(storage.executeStorage(any())).thenReturn(true);
 
@@ -54,7 +54,7 @@ public class BackupCreateTaskTest {
     }
 
     @Test
-    public void withStorageError() {
+    void withStorageError() {
         // Cannot save the backup
         when(storage.saveNewBackup(any())).thenReturn(false);
         when(storage.executeStorage(any())).thenReturn(true);

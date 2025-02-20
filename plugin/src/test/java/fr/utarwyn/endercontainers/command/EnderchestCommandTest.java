@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> {
+class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> {
 
     @Mock
     private EnderChestManager manager;
@@ -49,20 +49,20 @@ public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> 
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("enderchest");
         assertThat(this.command.getAliases()).containsExactly("ec", "endchest");
     }
 
     @Test
-    public void disableInConsole() {
+    void disableInConsole() {
         ConsoleCommandSender sender = mock(ConsoleCommandSender.class);
         this.run(sender);
         verify(sender).sendMessage(contains("player"));
     }
 
     @Test
-    public void disabledWorld() {
+    void disabledWorld() {
         when(this.player.getWorld().getName()).thenReturn("disabled");
         this.run(this.player);
         verify(this.player).sendMessage(contains("disabled"));
@@ -70,14 +70,14 @@ public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> 
     }
 
     @Test
-    public void openChestListInventory() {
+    void openChestListInventory() {
         this.givePermission(this.player);
         this.run(this.player);
         verify(this.context).openListInventory(this.player);
     }
 
     @Test
-    public void openSpecificChestInventory() {
+    void openSpecificChestInventory() {
         // With global permission
         this.givePermission(this.player);
         this.run(this.player, "10");
@@ -91,7 +91,7 @@ public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> 
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         // No permission for all chests
         this.run(this.player);
 
@@ -103,7 +103,7 @@ public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> 
     }
 
     @Test
-    public void errorEnderchestNumber() {
+    void errorEnderchestNumber() {
         this.givePermission(this.player);
         this.run(this.player, "-20");
         this.run(this.player, "0");
@@ -115,7 +115,7 @@ public class EnderchestCommandTest extends CommandTestHelper<EnderchestCommand> 
     }
 
     @Test
-    public void errorEnderchestNotAccessible() {
+    void errorEnderchestNotAccessible() {
         this.givePermission(this.player);
         when(this.context.openEnderchestInventory(this.player, 4)).thenReturn(false);
         this.run(this.player, "5");

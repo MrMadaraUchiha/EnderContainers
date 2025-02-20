@@ -17,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupRemoveTaskTest {
+class BackupRemoveTaskTest {
 
     @Test
-    public void run() throws TestInitializationException {
+    void run() throws TestInitializationException {
         EnderContainers plugin = TestHelper.getPlugin();
         BackupManager manager = mock(BackupManager.class);
         Backup backup = mock(Backup.class);

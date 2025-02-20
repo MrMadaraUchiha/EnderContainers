@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LocalizedExceptionTest {
 
     @Test
-    public void createWithoutParameter() {
+    void createWithoutParameter() {
         try {
             throw new LocalizedException(LocaleKey.CMD_UPDATE);
         } catch (LocalizedException e) {
@@ -19,7 +19,7 @@ public class LocalizedExceptionTest {
     }
 
     @Test
-    public void createWithParameters() {
+    void createWithParameters() {
         try {
             throw new LocalizedException(LocaleKey.CMD_NO_UPDATE, Collections.singletonMap("key", "value"));
         } catch (LocalizedException e) {

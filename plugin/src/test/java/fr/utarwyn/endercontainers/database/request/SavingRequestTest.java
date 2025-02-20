@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 public class SavingRequestTest {
 
     @Test
-    public void fields() {
+    void fields() {
         SavingRequest request1 = new SavingRequest(null, "test");
         request1.fields("id", "test").values(null, null);
 
@@ -28,7 +28,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void values() {
+    void values() {
         SavingRequest request1 = new SavingRequest(null, "test");
         request1.fields("field1", "field2", "field3").values(null, null, null);
 
@@ -40,7 +40,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void conditions() {
+    void conditions() {
         SavingRequest request1 = new SavingRequest(null, "test");
         request1.fields("field").values("eza").where("field = ?");
 
@@ -56,7 +56,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void attributes() {
+    void attributes() {
         SavingRequest request1 = new SavingRequest(null, "test");
         request1.fields("field1", "field2").values("eza", 45);
 
@@ -68,7 +68,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void replaceIfExists() {
+    void replaceIfExists() {
         SavingRequest request1 = new SavingRequest(null, "test");
         request1.fields("field1", "field2").values("eza", 45).replaceIfExists();
 
@@ -80,7 +80,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void execute() throws SQLException {
+    void execute() throws SQLException {
         Database database = mock(Database.class);
         SavingRequest request = new SavingRequest(database, "test");
 
@@ -91,7 +91,7 @@ public class SavingRequestTest {
     }
 
     @Test
-    public void illegalParameters() {
+    void illegalParameters() {
         SavingRequest request1 = new SavingRequest(null, null);
         SavingRequest request2 = new SavingRequest(null, "test");
         SavingRequest request3 = new SavingRequest(null, "test").fields("eza", "aze").values(2);

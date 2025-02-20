@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderChestManagerTest {
+class EnderChestManagerTest {
 
     private EnderChestManager manager;
 
@@ -44,7 +44,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void initialize() throws TestInitializationException {
+    void initialize() throws TestInitializationException {
         DependenciesManager dependenciesManager = mock(DependenciesManager.class);
         InventoryManager inventoryManager = mock(InventoryManager.class);
 
@@ -59,7 +59,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void unload() throws TestInitializationException {
+    void unload() throws TestInitializationException {
         InventoryManager inventoryManager = mock(InventoryManager.class);
         PlayerContext context = mock(PlayerContext.class);
 
@@ -77,13 +77,13 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void getMaxEnderchests() {
+    void getMaxEnderchests() {
         // Max amount of enderchests defined in the test config file
         assertThat(this.manager.getMaxEnderchests()).isEqualTo(27);
     }
 
     @Test
-    public void isContextUnused() throws TestInitializationException {
+    void isContextUnused() throws TestInitializationException {
         UUID uuid = UUID.randomUUID();
 
         TestHelper.setupManager(this.manager);
@@ -100,15 +100,15 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void loadPlayerContext() throws TestInitializationException {
+    void loadPlayerContext() throws TestInitializationException {
         // Setup the manager correctly
-        StorageManager manager = mock(StorageManager.class);
+        StorageManager storageManager = mock(StorageManager.class);
         PlayerData storage = mock(PlayerData.class);
 
         when(storage.getEnderchestContents(any())).thenReturn(new ConcurrentHashMap<>());
-        when(manager.createPlayerDataStorage(any())).thenReturn(storage);
+        when(storageManager.createPlayerDataStorage(any())).thenReturn(storage);
 
-        TestHelper.registerManagers(manager);
+        TestHelper.registerManagers(storageManager);
         TestHelper.setupManager(this.manager);
 
         Player player = TestHelper.getPlayer();
@@ -127,7 +127,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void registerPlayerContext() throws TestInitializationException {
+    void registerPlayerContext() throws TestInitializationException {
         UUID uuid = UUID.randomUUID();
 
         TestHelper.setupManager(this.manager);
@@ -144,7 +144,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void noDuplicateIfContextLoadingIsLong() throws TestInitializationException {
+    void noDuplicateIfContextLoadingIsLong() throws TestInitializationException {
         UUID uuid = UUID.randomUUID();
         PlayerContext playerContext = mock(PlayerContext.class);
         Consumer<PlayerContext> consumer = mock(Consumer.class);
@@ -161,7 +161,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void savePlayerContext() throws TestInitializationException {
+    void savePlayerContext() throws TestInitializationException {
         UUID uuid = UUID.randomUUID();
 
         // Setup the manager correctly
@@ -180,7 +180,7 @@ public class EnderChestManagerTest {
     }
 
     @Test
-    public void deletePlayerContextIfUnused() throws TestInitializationException {
+    void deletePlayerContextIfUnused() throws TestInitializationException {
         UUID uuid = UUID.randomUUID();
 
         // Setup the manager correctly

@@ -25,11 +25,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlayerSQLDataTest {
+class PlayerSQLDataTest {
 
     private static final String FAKE_DATA = "FAKE_DATA";
 
-    private static final ConcurrentHashMap<Integer, ItemStack> CONTENTS = new ConcurrentHashMap<Integer, ItemStack>() {{
+    private static final ConcurrentHashMap<Integer, ItemStack> CONTENTS = new ConcurrentHashMap<>() {{
         put(14, new ItemStack(Material.DIRT, 2));
         put(26, new ItemStack(Material.DIAMOND, 34));
     }};
@@ -67,7 +67,7 @@ public class PlayerSQLDataTest {
     }
 
     @Test
-    public void getEnderchestContents() throws SQLException {
+    void getEnderchestContents() throws SQLException {
         this.data.load();
         this.data.save();
 
@@ -89,7 +89,7 @@ public class PlayerSQLDataTest {
     }
 
     @Test
-    public void getEnderchestRows() {
+    void getEnderchestRows() {
         this.data.load();
 
         // Valid chests
@@ -104,7 +104,7 @@ public class PlayerSQLDataTest {
     }
 
     @Test
-    public void saveNewEnderchest() throws SQLException {
+    void saveNewEnderchest() throws SQLException {
         // Insert a new enderchest
         when(this.chest.getNum()).thenReturn(12);
         when(this.chest.getRows()).thenReturn(6);
@@ -125,7 +125,7 @@ public class PlayerSQLDataTest {
     }
 
     @Test
-    public void saveExistingEnderchest() throws SQLException {
+    void saveExistingEnderchest() throws SQLException {
         when(this.chest.getNum()).thenReturn(1);
         when(this.chest.getRows()).thenReturn(4);
         when(this.chest.getContents()).thenReturn(CONTENTS);

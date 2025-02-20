@@ -31,7 +31,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlotSquaredDependencyTest {
+class PlotSquaredDependencyTest {
 
     private PlotSquaredDependency dependency;
 
@@ -70,7 +70,7 @@ public class PlotSquaredDependencyTest {
     }
 
     @Test
-    public void invalidateIfPlotProtected() {
+    void invalidateIfPlotProtected() {
         try {
             this.dependency.validateBlockChestOpening(this.block, this.player);
             fail("should throw block chest opening exception when not in plot");
@@ -81,7 +81,7 @@ public class PlotSquaredDependencyTest {
     }
 
     @Test
-    public void validateNotInPlot() {
+    void validateNotInPlot() {
         try {
             when(this.plotArea.getPlot(any(com.plotsquared.core.location.Location.class))).thenReturn(null);
             this.dependency.validateBlockChestOpening(this.block, this.player);
@@ -91,7 +91,7 @@ public class PlotSquaredDependencyTest {
     }
 
     @Test
-    public void validateIfOperator() {
+    void validateIfOperator() {
         try {
             when(this.player.isOp()).thenReturn(true);
             this.dependency.validateBlockChestOpening(this.block, this.player);
@@ -101,7 +101,7 @@ public class PlotSquaredDependencyTest {
     }
 
     @Test
-    public void validateIfPermGranted() {
+    void validateIfPermGranted() {
         try {
             when(this.plot.isAdded(this.player.getUniqueId())).thenReturn(true);
             this.dependency.validateBlockChestOpening(this.block, this.player);
@@ -111,7 +111,7 @@ public class PlotSquaredDependencyTest {
     }
 
     @Test
-    public void validateIfNoProtection() {
+    void validateIfNoProtection() {
         try {
             when(this.plot.getFlag(UseFlag.class)).thenReturn(new ArrayList<>());
             this.dependency.validateBlockChestOpening(this.block, this.player);

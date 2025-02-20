@@ -25,13 +25,13 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlayerFlatDataTest {
+class PlayerFlatDataTest {
 
     private static final UUID TEST_UUID = UUID.fromString("06242f9a-6fcf-4504-b69a-9420da52ee9d");
 
     private static final String VALID = "VALID";
 
-    private static final ConcurrentMap<Integer, ItemStack> ITEMS = new ConcurrentHashMap<Integer, ItemStack>() {{
+    private static final ConcurrentMap<Integer, ItemStack> ITEMS = new ConcurrentHashMap<>() {{
         put(1, new ItemStack(Material.OAK_BOAT));
     }};
 
@@ -56,12 +56,12 @@ public class PlayerFlatDataTest {
     }
 
     @Test
-    public void load() {
+    void load() {
         assertThat(this.data.configuration).isNotNull();
     }
 
     @Test
-    public void save() throws TestInitializationException {
+    void save() throws TestInitializationException {
         this.data.configuration.set("check", true);
         this.data.save();
 
@@ -78,7 +78,7 @@ public class PlayerFlatDataTest {
     }
 
     @Test
-    public void getEnderchestContents() throws IOException {
+    void getEnderchestContents() throws IOException {
         this.data.configuration.set("enderchests.1.contents", VALID);
 
         // valid chest with data
@@ -92,7 +92,7 @@ public class PlayerFlatDataTest {
     }
 
     @Test
-    public void getEnderchestRows() {
+    void getEnderchestRows() {
         this.data.configuration.set("enderchests.1.rows", 5);
 
         // valid chest with row data
@@ -105,7 +105,7 @@ public class PlayerFlatDataTest {
     }
 
     @Test
-    public void saveEnderchest() {
+    void saveEnderchest() {
         when(this.chest.getNum()).thenReturn(1);
         when(this.chest.getRows()).thenReturn(4);
         when(this.chest.getContents()).thenReturn(ITEMS);

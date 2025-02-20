@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupCommandTest extends CommandTestHelper<BackupCommand> {
+class BackupCommandTest extends CommandTestHelper<BackupCommand> {
 
     @Mock
     private BackupManager manager;
@@ -39,12 +39,12 @@ public class BackupCommandTest extends CommandTestHelper<BackupCommand> {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("backup");
     }
 
     @Test
-    public void withPermission() {
+    void withPermission() {
         when(this.player.hasPermission(anyString())).thenReturn(false);
         when(this.player.hasPermission("endercontainers.backup.list")).thenReturn(true);
         when(this.player.hasPermission("endercontainers.backup.remove")).thenReturn(true);
@@ -56,14 +56,14 @@ public class BackupCommandTest extends CommandTestHelper<BackupCommand> {
     }
 
     @Test
-    public void withoutPermission() {
+    void withoutPermission() {
         this.run(this.player);
         verify(this.player).sendMessage(contains("§m/ecp backup list"));
         verify(this.player).sendMessage(contains("§m/ecp backup remove"));
     }
 
     @Test
-    public void runSubCommand() {
+    void runSubCommand() {
         when(this.player.hasPermission("endercontainers.backup.list")).thenReturn(true);
         this.run(this.player, "list");
         verify(this.player).sendMessage(contains("No backup"));

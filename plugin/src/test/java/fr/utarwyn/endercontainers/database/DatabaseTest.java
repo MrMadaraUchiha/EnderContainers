@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DatabaseTest {
+class DatabaseTest {
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private Database database;
@@ -38,13 +38,13 @@ public class DatabaseTest {
     }
 
     @Test
-    public void serverUrl() {
+    void serverUrl() {
         Database mySQLDatabase = new Database(new MySQLAdapter(), null);
         assertThat(mySQLDatabase.getServerUrl()).isEqualTo("localhost:3306");
     }
 
     @Test
-    public void withSecureCredentials() {
+    void withSecureCredentials() {
         DatabaseSecureCredentials credentials = new DatabaseSecureCredentials();
         credentials.setClientKeystore("client.p12", "changeit");
         credentials.setTrustKeystore("trust.p12", "changeit");
@@ -54,7 +54,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void initializationErrors() {
+    void initializationErrors() {
         // With a MySQL adapter
         Database mySQLDatabase = new Database(new MySQLAdapter(), null);
         assertThatExceptionOfType(RuntimeException.class)
@@ -65,7 +65,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void isRunning() {
+    void isRunning() {
         // Not connected if the connection pool is not running
         when(this.database.source.isRunning()).thenReturn(false);
         assertThat(this.database.isRunning()).isFalse();
@@ -76,7 +76,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void close() {
+    void close() {
         // Can call the close method without a valid opened connection
         this.database.close();
 
@@ -87,7 +87,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void getServerVersion() throws SQLException {
+    void getServerVersion() throws SQLException {
         Connection connection = mock(Connection.class);
         DatabaseMetaData metaData = mock(DatabaseMetaData.class);
 
@@ -101,7 +101,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void getTables() throws SQLException {
+    void getTables() throws SQLException {
         Connection connection = mock(Connection.class);
         DatabaseMetaData metaData = mock(DatabaseMetaData.class);
         ResultSet resultSet = mock(ResultSet.class);
@@ -117,7 +117,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void performSelect() throws SQLException {
+    void performSelect() throws SQLException {
         PreparedStatement statement = this.createFakeStatement();
 
         SelectRequest request = this.database.select("any", "field", "here")
@@ -129,7 +129,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void performUpdate() throws SQLException {
+    void performUpdate() throws SQLException {
         PreparedStatement statement = this.createFakeStatement();
 
         when(statement.executeUpdate()).thenReturn(1);
@@ -143,7 +143,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void performDelete() throws SQLException {
+    void performDelete() throws SQLException {
         PreparedStatement statement = this.createFakeStatement();
 
         when(statement.executeUpdate()).thenReturn(1);
@@ -157,7 +157,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void performCustomRequest() throws SQLException {
+    void performCustomRequest() throws SQLException {
         Statement statement = mock(Statement.class);
         String request = "SELECT * FROM dual";
 

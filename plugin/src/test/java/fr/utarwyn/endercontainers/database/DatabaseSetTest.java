@@ -16,9 +16,9 @@ import static org.mockito.Mockito.when;
 
 public class DatabaseSetTest {
 
-    private final static String KEY = "test";
+    private static final String KEY = "test";
 
-    private final static String KEY_UNKNOWN = "unknown";
+    private static final String KEY_UNKNOWN = "unknown";
 
     private DatabaseSet set;
 
@@ -28,7 +28,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void getString() {
+    void getString() {
         // Correct value type
         this.set.setObject(KEY, "hello world");
         assertThat(this.set.getString(KEY))
@@ -43,7 +43,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void getInteger() {
+    void getInteger() {
         // Correct value type
         this.set.setObject(KEY, 55);
         assertThat(this.set.getInteger(KEY)).isNotNull().isEqualTo(55);
@@ -57,7 +57,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void getTimestamp() {
+    void getTimestamp() {
         // Correct value type
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         this.set.setObject(KEY, ts);
@@ -72,7 +72,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void getKeys() {
+    void getKeys() {
         // No keys by default
         assertThat(this.set.getKeys()).isNotNull().isEmpty();
 
@@ -86,7 +86,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void getValues() {
+    void getValues() {
         // No values by default
         assertThat(this.set.getValues()).isNotNull().isEmpty();
 
@@ -100,7 +100,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void stringRepresentation() {
+    void stringRepresentation() {
         // Default toString
         assertThat(this.set.toString()).isNotNull()
                 .matches("\\{DatabaseSet #([0-9]+) \\(\\)}");
@@ -116,7 +116,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void equals() {
+    void equals() {
         DatabaseSet other = new DatabaseSet();
         other.setObject(KEY, "test");
 
@@ -127,7 +127,7 @@ public class DatabaseSetTest {
     }
 
     @Test
-    public void resultSetToDatabaseSet() throws SQLException {
+    void resultSetToDatabaseSet() throws SQLException {
         ResultSet resultSet = mock(ResultSet.class);
         ResultSetMetaData metaData = mock(ResultSetMetaData.class);
 

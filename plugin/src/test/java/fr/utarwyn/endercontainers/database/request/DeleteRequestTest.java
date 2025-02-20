@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class DeleteRequestTest {
 
     @Test
-    public void conditions() {
+    void conditions() {
         DeleteRequest request1 = new DeleteRequest(null, "`test` = ?");
         DeleteRequest request2 = new DeleteRequest(null, "`eaz` > 50", "`test` = ?");
 
@@ -25,13 +25,13 @@ public class DeleteRequestTest {
     }
 
     @Test
-    public void from() {
+    void from() {
         DeleteRequest request = new DeleteRequest(null, "`test` = ?").from("data");
         assertThat(request.getRequest()).startsWith("DELETE FROM `data`");
     }
 
     @Test
-    public void attributes() {
+    void attributes() {
         DeleteRequest request1 = new DeleteRequest(null, "test");
         DeleteRequest request2 = new DeleteRequest(null, "field = ?", "eza > ?");
         request2.attributes(1234, 42.3);
@@ -41,7 +41,7 @@ public class DeleteRequestTest {
     }
 
     @Test
-    public void execute() throws SQLException {
+    void execute() throws SQLException {
         Database database = mock(Database.class);
         DeleteRequest request = new DeleteRequest(database, "test = ?");
 
@@ -52,13 +52,13 @@ public class DeleteRequestTest {
     }
 
     @Test
-    public void withoutCondition() {
+    void withoutCondition() {
         DeleteRequest request = new DeleteRequest(null).from("table");
         assertThat(request.getRequest()).isEqualTo("DELETE FROM `table`");
     }
 
     @Test
-    public void illegalParameters() {
+    void illegalParameters() {
         DeleteRequest request = new DeleteRequest(null, "null");
         assertThatNullPointerException().isThrownBy(request::getRequest)
                 .withMessage("Table seems to be null")

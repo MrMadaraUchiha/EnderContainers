@@ -31,7 +31,7 @@ import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderChestInventoryListenerTest {
+class EnderChestInventoryListenerTest {
 
     private EnderChestInventoryListener listener;
 
@@ -77,7 +77,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryClickVanillaChest() {
+    void inventoryClickVanillaChest() {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
 
         InventoryClickEvent event = createInventoryClickEvent(false);
@@ -98,7 +98,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryClickEnderChest() {
+    void inventoryClickEnderChest() {
         InventoryClickEvent event = createInventoryClickEvent(false);
 
         // No item
@@ -117,7 +117,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryShiftClick() {
+    void inventoryShiftClick() {
         InventoryClickEvent event = createInventoryClickEvent(true);
 
         // No item
@@ -136,7 +136,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryDragVanillaChest() {
+    void inventoryDragVanillaChest() {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
 
         InventoryDragEvent event = createInventoryDragEvent(new HashMap<>());
@@ -157,7 +157,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryDragEnderChest() {
+    void inventoryDragEnderChest() {
         InventoryDragEvent event = createInventoryDragEvent(new HashMap<>());
 
         // No item
@@ -176,7 +176,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryCloseSaveOfflineVanillaChest() {
+    void inventoryCloseSaveOfflineVanillaChest() {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
 
         Player player2 = mock(Player.class);
@@ -210,14 +210,14 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryCloseGlobalSound() {
+    void inventoryCloseGlobalSound() {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
         this.listener.onInventoryClose(new InventoryCloseEvent(this.inventoryView));
         verify(this.world).playSound(this.player.getLocation(), Sound.BLOCK_CHEST_CLOSE, 1f, 1f);
     }
 
     @Test
-    public void inventoryClosePlayerSound() throws TestInitializationException {
+    void inventoryClosePlayerSound() throws TestInitializationException {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
         TestHelper.overrideConfigurationValue("globalSound", false);
 
@@ -226,7 +226,7 @@ public class EnderChestInventoryListenerTest {
     }
 
     @Test
-    public void inventoryCloseUnsupportedActions() {
+    void inventoryCloseUnsupportedActions() {
         when(this.inventory.getType()).thenReturn(InventoryType.ENDER_CHEST);
         InventoryCloseEvent event = new InventoryCloseEvent(this.inventoryView);
 

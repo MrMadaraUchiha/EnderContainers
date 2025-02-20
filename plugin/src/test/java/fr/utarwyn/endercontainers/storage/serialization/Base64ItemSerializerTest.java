@@ -28,7 +28,7 @@ public class Base64ItemSerializerTest {
     }
 
     @Test
-    public void serialize() throws IOException {
+    void serialize() throws IOException {
         ConcurrentMap<Integer, ItemStack> map = new ConcurrentHashMap<>();
         map.put(1, new ItemStack(Material.OAK_LOG, 10));
         map.put(17, new ItemStack(Material.DIRT, 20));
@@ -54,7 +54,7 @@ public class Base64ItemSerializerTest {
     }
 
     @Test
-    public void deserialize() throws IOException {
+    void deserialize() throws IOException {
         ConcurrentMap<Integer, ItemStack> result = this.serializer.deserialize(
                 "rO0ABXcIAAAAAgAAAAFzcgAab3JnLmJ1a2tpdC51dGlsLmlvLldyYXBwZXLyUEfs8RJvBQIAAUwAA21hcHQAD0" +
                         "xqYXZhL3V0aWwvTWFwO3hwc3IANWNvbS5nb29nbGUuY29tbW9uLmNvbGxlY3QuSW1tdXRhYmxlTWFwJFNlcmlhbGl6ZWRGb3Jt" +

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CompatibilityHelperTest {
+class CompatibilityHelperTest {
 
     @BeforeAll
     public static void setUpClass() {
@@ -24,12 +24,13 @@ public class CompatibilityHelperTest {
     }
 
     @Test
-    public void searchMaterial() {
+    void searchMaterial() {
         // null value
         try {
             CompatibilityHelper.searchMaterial(null);
             fail("must reject null values");
         } catch (NullPointerException ignored) {
+            // ignored
         }
 
         // Prepare Bukkit unsafe
@@ -41,12 +42,13 @@ public class CompatibilityHelperTest {
     }
 
     @Test
-    public void searchSound() {
+    void searchSound() {
         // unknown value
         try {
             CompatibilityHelper.searchSound("UNKNOWN_1", "UNKNOWN_2");
             fail("must reject unknown values");
         } catch (IllegalArgumentException ignored) {
+            // ignored
         }
 
         // one of provided values is valid
@@ -56,7 +58,7 @@ public class CompatibilityHelperTest {
     }
 
     @Test
-    public void createBukkitArmorStandAdapter() {
+    void createBukkitArmorStandAdapter() {
         ServerVersion def = ServerVersion.get();
         TestHelper.overrideServerVersion(ServerVersion.V1_20);
         assertThat(CompatibilityHelper.createArmorStandAdapter()).isInstanceOf(BukkitArmorStandAdapter.class);
@@ -64,7 +66,7 @@ public class CompatibilityHelperTest {
     }
 
     @Test
-    public void createNMSArmorStandAdapter() {
+    void createNMSArmorStandAdapter() {
         ServerVersion def = ServerVersion.get();
         TestHelper.overrideServerVersion(ServerVersion.V1_8);
         assertThat(CompatibilityHelper.createArmorStandAdapter()).isInstanceOf(NMSArmorStandAdapter.class);

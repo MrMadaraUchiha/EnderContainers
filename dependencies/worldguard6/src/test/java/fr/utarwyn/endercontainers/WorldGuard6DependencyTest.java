@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class WorldGuard6DependencyTest {
+class WorldGuard6DependencyTest {
 
     private WorldGuard6Dependency dependency;
 
@@ -49,7 +49,7 @@ public class WorldGuard6DependencyTest {
     }
 
     @Test
-    public void validateIfOperator() {
+    void validateIfOperator() {
         try {
             when(this.player.isOp()).thenReturn(true);
             this.dependency.validateBlockChestOpening(this.block, this.player);
@@ -59,7 +59,7 @@ public class WorldGuard6DependencyTest {
     }
 
     @Test
-    public void validateIfCanBuildSucceed() {
+    void validateIfCanBuildSucceed() {
         try {
             when(this.regionQuery.testBuild(eq(this.block.getLocation()), any(LocalPlayer.class), eq(DefaultFlag.CHEST_ACCESS)))
                     .thenReturn(true);
@@ -70,13 +70,14 @@ public class WorldGuard6DependencyTest {
     }
 
     @Test
-    public void invalidateIfCanBuildErrored() {
+    void invalidateIfCanBuildErrored() {
         try {
             when(this.regionQuery.testBuild(eq(this.block.getLocation()), any(LocalPlayer.class), eq(DefaultFlag.CHEST_ACCESS)))
                     .thenReturn(false);
             this.dependency.validateBlockChestOpening(this.block, this.player);
             fail("should throw block chest opening exception because build is forbidden by WorldGuard");
         } catch (BlockChestOpeningException ignored) {
+            // ignored
         }
     }
 

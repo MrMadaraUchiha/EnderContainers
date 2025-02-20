@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DatabaseSecureCredentialsTest {
+class DatabaseSecureCredentialsTest {
 
     private static final String DEFAULT_FILE = "test.p12";
 
@@ -32,7 +32,7 @@ public class DatabaseSecureCredentialsTest {
     }
 
     @Test
-    public void withClientKeystore() {
+    void withClientKeystore() {
         // Valid client keystore parameters
         this.credentials.setClientKeystore(DEFAULT_FILE, DEFAULT_PASSWORD);
 
@@ -58,7 +58,7 @@ public class DatabaseSecureCredentialsTest {
     }
 
     @Test
-    public void withTrustKeystore() {
+    void withTrustKeystore() {
         // Also put the client keystore first
         this.credentials.setClientKeystore(DEFAULT_FILE, DEFAULT_PASSWORD);
 
@@ -84,7 +84,7 @@ public class DatabaseSecureCredentialsTest {
     }
 
     @Test
-    public void fromConfig() {
+    void fromConfig() {
         // From an empty config
         Configuration configuration = mock(Configuration.class);
         when(configuration.isMysqlSsl()).thenReturn(false);

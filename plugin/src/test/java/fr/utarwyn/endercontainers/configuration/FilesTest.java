@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class FilesTest {
+class FilesTest {
 
     @BeforeAll
     public static void setUpClass() throws TestInitializationException {
@@ -18,7 +18,7 @@ public class FilesTest {
     }
 
     @Test
-    public void reload() throws ConfigLoadingException, TestInitializationException {
+    void reload() throws ConfigLoadingException, TestInitializationException {
         assertThat(Files.getConfiguration()).isNotNull();
         assertThat(Files.getLocale()).isNotNull();
         Files.reload(TestHelper.getPlugin());

@@ -59,6 +59,7 @@ public class CompatibilityHelper {
                 try {
                     return Sound.valueOf(soundKey);
                 } catch (IllegalArgumentException ignored) {
+                    // ignored
                 }
             }
             throw new IllegalArgumentException(String.format("no sound found using key %s", names[0]));

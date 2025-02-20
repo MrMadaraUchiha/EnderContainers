@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class InfoCommandTest {
+class InfoCommandTest {
 
     @Mock
     private BackupManager backupManager;
@@ -32,21 +32,21 @@ public class InfoCommandTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         InfoCommand command = new InfoCommand(this.backupManager);
         assertThat(command.manager).isNotNull().isEqualTo(this.backupManager);
         assertThat(command.getName()).isEqualTo("info");
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         InfoCommand command = spy(new InfoCommand(this.backupManager));
         command.onCommand(this.player, command, null, new String[]{"noperm"});
         verify(command, never()).perform(this.player);
     }
 
     @Test
-    public void performWithNoBackup() {
+    void performWithNoBackup() {
         InfoCommand command = new InfoCommand(this.backupManager);
 
         when(player.hasPermission(anyString())).thenReturn(true);
@@ -58,7 +58,7 @@ public class InfoCommandTest {
     }
 
     @Test
-    public void perform() {
+    void perform() {
         InfoCommand command = new InfoCommand(this.backupManager);
         Optional<Backup> backup = Optional.of(new Backup("backupname",
                 new Timestamp(System.currentTimeMillis()), "Utarwyn"));

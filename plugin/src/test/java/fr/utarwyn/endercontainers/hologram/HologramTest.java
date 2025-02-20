@@ -2,7 +2,6 @@ package fr.utarwyn.endercontainers.hologram;
 
 import fr.utarwyn.endercontainers.TestHelper;
 import fr.utarwyn.endercontainers.TestInitializationException;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,17 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class HologramTest {
-
-    private static final String TITLE = "title";
-
-    private static final Integer ENTITY_ID = 10;
+class HologramTest {
 
     @Mock
     private Player observer;
-
-    @Mock
-    private Location location;
 
     @BeforeAll
     public static void setUpClass() throws TestInitializationException {
@@ -33,8 +25,8 @@ public class HologramTest {
     }
 
     @Test
-    public void observerOnline() throws HologramException {
-        Hologram hologram = new Hologram(this.observer, ENTITY_ID);
+    void observerOnline() {
+        Hologram hologram = new Hologram(this.observer, 10);
 
         when(this.observer.isOnline()).thenReturn(true);
         assertThat(hologram.isObserverOnline()).isTrue();

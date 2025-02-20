@@ -17,7 +17,7 @@ public class NMSUtilTest {
     }
 
     @Test
-    public void getNMSClass() {
+    void getNMSClass() {
         try {
             NMSUtil.getNMSClass("Fake", "package1_17");
             fail("class retrieving must fail");
@@ -27,7 +27,7 @@ public class NMSUtilTest {
     }
 
     @Test
-    public void getNMSDynamicMethod() throws ReflectiveOperationException {
+    void getNMSDynamicMethod() throws ReflectiveOperationException {
         ServerVersion defVersion = ServerVersion.get();
         overrideServerVersion(ServerVersion.V1_8);
         assertThat(NMSUtil.getNMSDynamicMethod(String.class, "toLowerCase", "toUpperCase").invoke("TeSt")).isEqualTo("test");

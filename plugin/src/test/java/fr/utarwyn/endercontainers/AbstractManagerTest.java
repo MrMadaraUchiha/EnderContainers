@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class AbstractManagerTest {
+class AbstractManagerTest {
 
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private AbstractManager manager;
@@ -24,7 +24,7 @@ public class AbstractManagerTest {
     private EnderContainers plugin;
 
     @Test
-    public void registerListener() {
+    void registerListener() {
         Server server = mock(Server.class);
         PluginManager pluginManager = mock(PluginManager.class);
 
@@ -40,7 +40,7 @@ public class AbstractManagerTest {
     }
 
     @Test
-    public void setPlugin() {
+    void setPlugin() {
         Logger logger = mock(Logger.class);
         when(this.plugin.getLogger()).thenReturn(logger);
 

@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class SaveTaskTest {
+class SaveTaskTest {
 
     private SaveTask task;
 
@@ -22,7 +22,7 @@ public class SaveTaskTest {
     }
 
     @Test
-    public void run() {
+    void run() {
         this.task.run();
         verify(this.context).save();
     }

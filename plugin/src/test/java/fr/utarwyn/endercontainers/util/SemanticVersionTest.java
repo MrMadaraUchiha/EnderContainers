@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class SemanticVersionTest {
 
     @Test
-    public void construct() {
+    void construct() {
         SemanticVersion v1 = new SemanticVersion("2.5.6");
         assertThat(v1.getMajor()).isEqualTo(2);
         assertThat(v1.getMinor()).isEqualTo(5);
@@ -29,7 +29,7 @@ public class SemanticVersionTest {
     }
 
     @Test
-    public void malformed() {
+    void malformed() {
         assertThatIllegalArgumentException().isThrownBy(() -> new SemanticVersion(""));
         assertThatIllegalArgumentException().isThrownBy(() -> new SemanticVersion("2.2"));
         assertThatIllegalArgumentException().isThrownBy(() -> new SemanticVersion("a.6.7"));
@@ -37,7 +37,7 @@ public class SemanticVersionTest {
     }
 
     @Test
-    public void compareStableBuild() {
+    void compareStableBuild() {
         SemanticVersion v1 = new SemanticVersion("1.0.0");
         SemanticVersion v2 = new SemanticVersion("2.0.0");
         SemanticVersion v3 = new SemanticVersion("1.1.0");
@@ -49,7 +49,7 @@ public class SemanticVersionTest {
     }
 
     @Test
-    public void compareDevBuild() {
+    void compareDevBuild() {
         SemanticVersion vStable = new SemanticVersion("1.1.0");
         SemanticVersion vDev = new SemanticVersion("1.1.0-dev");
         assertThat(vStable).isGreaterThan(vDev);
@@ -60,7 +60,7 @@ public class SemanticVersionTest {
     }
 
     @Test
-    public void equal() {
+    void equal() {
         SemanticVersion v1 = new SemanticVersion("2.2.2");
         SemanticVersion v2 = new SemanticVersion("2.2.2");
 
@@ -72,7 +72,7 @@ public class SemanticVersionTest {
     }
 
     @Test
-    public void string() {
+    void string() {
         assertThat(new SemanticVersion("3.3.3")).hasToString("3.3.3");
         assertThat(new SemanticVersion("1.3.2-dev")).hasToString("1.3.2-dev");
     }

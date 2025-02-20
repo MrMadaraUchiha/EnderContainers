@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupsFlatDataTest {
+class BackupsFlatDataTest {
 
     private BackupsFlatData data;
 
@@ -74,7 +74,7 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void load() {
+    void load() {
         assertThat(this.data.configuration).isNotNull();
         assertThat(this.data.configuration.isConfigurationSection("backups")).isTrue();
 
@@ -84,7 +84,7 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void save() {
+    void save() {
         this.data.save();
 
         try (Scanner reader = new Scanner(file)) {
@@ -98,12 +98,13 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void saveNewBackup() throws IOException {
+    void saveNewBackup() throws IOException {
         FileTime beforeTime = getLastModifiedTime(this.file);
 
         try {
             Thread.sleep(200);
         } catch (Exception ignored) {
+            // ignored
         }
 
         assertThat(this.data.saveNewBackup(this.backup)).isTrue();
@@ -114,7 +115,7 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void executeStorage() throws IOException {
+    void executeStorage() throws IOException {
         // Prepare test
         emptyFolder(this.backupFolder);
         emptyFolder(this.dataFolder);
@@ -131,7 +132,7 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void applyBackup() throws IOException {
+    void applyBackup() throws IOException {
         // Prepare test
         emptyFolder(this.backupFolder);
         emptyFolder(this.dataFolder);
@@ -148,7 +149,7 @@ public class BackupsFlatDataTest {
     }
 
     @Test
-    public void removeBackup() throws IOException {
+    void removeBackup() throws IOException {
         // Prepare test
         emptyFolder(this.backupFolder);
         copy(this.fakeFile, this.backupFolder);

@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class StorageManagerTest {
+class StorageManagerTest {
 
     private StorageManager manager;
 
@@ -40,7 +40,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void loadFileWrappers() {
+    void loadFileWrappers() {
         when(this.databaseManager.isReady()).thenReturn(false);
         this.manager.load();
 
@@ -53,7 +53,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void loadSQLWrappers() {
+    void loadSQLWrappers() {
         when(this.databaseManager.isReady()).thenReturn(true);
         this.manager.load();
 

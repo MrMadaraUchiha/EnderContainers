@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ConfigurationTest {
+class ConfigurationTest {
 
     @BeforeAll
     public static void setUpClass() throws TestInitializationException {
@@ -25,7 +25,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void loadFromTestFile() throws ConfigLoadingException, TestInitializationException {
+    void loadFromTestFile() throws ConfigLoadingException, TestInitializationException {
         Configuration config = new Configuration(TestHelper.getPlugin().getConfig());
         assertThat(config.getLocale()).isEqualTo("en");
         assertThat(config.getDisabledWorlds()).containsExactly("disabled");
@@ -42,7 +42,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void loadDatabaseSSLValues() throws ConfigLoadingException, TestInitializationException {
+    void loadDatabaseSSLValues() throws ConfigLoadingException, TestInitializationException {
         FileConfiguration fileConfiguration = new YamlConfiguration();
         fileConfiguration.setDefaults(TestHelper.getPlugin().getConfig());
         fileConfiguration.set("mysql.ssl.enabled", true);
@@ -56,7 +56,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void loadValueError() {
+    void loadValueError() {
         FileConfiguration fileConfiguration = mock(FileConfiguration.class);
         // Throw an exception on every string retrieved
         when(fileConfiguration.isString(any())).thenReturn(true);

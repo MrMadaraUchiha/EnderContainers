@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderChestTest {
+class EnderChestTest {
 
     @Mock
     private PlayerData storage;
@@ -53,7 +53,7 @@ public class EnderChestTest {
     }
 
     @Test
-    public void initialState() {
+    void initialState() {
         assertThat(this.chest.container).isNotNull();
         assertThat(this.chest.getNum()).isEqualTo(1);
         assertThat(this.chest.getRows()).isEqualTo(3);
@@ -62,7 +62,7 @@ public class EnderChestTest {
     }
 
     @Test
-    public void size() {
+    void size() {
         // Default size
         assertThat(this.chest.getSize()).isZero();
         assertThat(this.chest.getFillPercentage()).isZero();
@@ -86,7 +86,7 @@ public class EnderChestTest {
     }
 
     @Test
-    public void contents() {
+    void contents() {
         assertThat(this.chest.getContents()).isNotNull().isEmpty();
 
         // Custom already initialized container
@@ -97,7 +97,7 @@ public class EnderChestTest {
         verify(this.storage, times(2)).getEnderchestContents(any());
 
         // With an existing and loaded container
-        ConcurrentMap<Integer, ItemStack> fakeContents = new ConcurrentHashMap<Integer, ItemStack>() {{
+        ConcurrentMap<Integer, ItemStack> fakeContents = new ConcurrentHashMap<>() {{
             put(10, new ItemStack(Material.STONE));
             put(15, new ItemStack(Material.FIREWORK_ROCKET));
         }};
@@ -109,7 +109,7 @@ public class EnderChestTest {
     }
 
     @Test
-    public void accessibility() {
+    void accessibility() {
         EnderChest defaultChest = new EnderChest(this.context, 0);
 
         // Default behavior
@@ -123,7 +123,7 @@ public class EnderChestTest {
     }
 
     @Test
-    public void container() {
+    void container() {
         this.chest.container = mock(EnderChestInventory.class);
         Inventory inventory = mock(Inventory.class);
 

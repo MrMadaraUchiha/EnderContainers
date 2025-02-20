@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BackupsSQLDataTest {
+class BackupsSQLDataTest {
 
     private static final Timestamp CURRENT = new Timestamp(new Date().getTime());
 
@@ -69,7 +69,7 @@ public class BackupsSQLDataTest {
     }
 
     @Test
-    public void load() throws SQLException {
+    void load() throws SQLException {
         when(this.databaseManager.getBackups()).thenReturn(Arrays.asList(
                 generateBackupSet(NAME + '1', AUTHOR + '1', ""),
                 generateBackupSet(NAME + '2', AUTHOR + '2', "")
@@ -88,12 +88,12 @@ public class BackupsSQLDataTest {
     }
 
     @Test
-    public void executeStorage() {
+    void executeStorage() {
         assertThat(this.data.executeStorage(null)).isTrue();
     }
 
     @Test
-    public void saveNewBackup() throws SQLException {
+    void saveNewBackup() throws SQLException {
         // Without chest in the database
         assertThat(this.data.saveNewBackup(backup)).isTrue();
         verify(this.databaseManager).saveBackup(NAME, CURRENT.getTime(), "", AUTHOR);
@@ -109,7 +109,7 @@ public class BackupsSQLDataTest {
     }
 
     @Test
-    public void applyBackup() throws SQLException {
+    void applyBackup() throws SQLException {
         // No backup found
         when(this.databaseManager.getBackup(NAME)).thenReturn(Optional.empty());
         assertThat(this.data.applyBackup(this.backup)).isFalse();
@@ -124,7 +124,7 @@ public class BackupsSQLDataTest {
     }
 
     @Test
-    public void removeBackup() throws SQLException {
+    void removeBackup() throws SQLException {
         assertThat(this.data.removeBackup(this.backup)).isFalse();
 
         when(this.databaseManager.removeBackup(NAME)).thenReturn(true);
@@ -132,7 +132,7 @@ public class BackupsSQLDataTest {
     }
 
     @Test
-    public void withSQLErrors() throws SQLException {
+    void withSQLErrors() throws SQLException {
         // Load backup
         doThrow(SQLException.class).when(this.databaseManager).getBackups();
         this.data.load();

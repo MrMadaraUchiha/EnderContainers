@@ -39,7 +39,7 @@ import static org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EnderChestListenerTest {
+class EnderChestListenerTest {
 
     private EnderChestListener listener;
 
@@ -91,8 +91,8 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerInteractBlockedByDependency() throws BlockChestOpeningException {
-        doThrow(new BlockChestOpeningException(LocaleKey.ERR_DEP_FACTIONS, new HashMap<String, String>() {{
+    void playerInteractBlockedByDependency() throws BlockChestOpeningException {
+        doThrow(new BlockChestOpeningException(LocaleKey.ERR_DEP_FACTIONS, new HashMap<>() {{
             put("faction", "awesome_faction");
         }})).when(this.dependenciesManager).validateBlockChestOpening(this.block, this.player);
 
@@ -106,7 +106,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerInteractNoBlockAction() {
+    void playerInteractNoBlockAction() {
         // No block registered in this test case
         this.block = null;
 
@@ -122,7 +122,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerInteractWrongBlockType() {
+    void playerInteractWrongBlockType() {
         when(this.block.getType()).thenReturn(Material.CHEST);
         PlayerInteractEvent event = this.createInteractEvent(RIGHT_CLICK_BLOCK);
         this.listener.onPlayerInteract(event);
@@ -130,7 +130,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerInteractWhileSneaking() {
+    void playerInteractWhileSneaking() {
         ItemStack item = new ItemStack(Material.STICK);
         PlayerInventory inventory = mock(PlayerInventory.class);
 
@@ -144,7 +144,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerInteractDisabledWorld() {
+    void playerInteractDisabledWorld() {
         when(this.world.getName()).thenReturn("disabled");
 
         PlayerInteractEvent event = this.createInteractEvent(RIGHT_CLICK_BLOCK);
@@ -153,7 +153,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void playerLeaveSaveContext() {
+    void playerLeaveSaveContext() {
         PlayerQuitEvent event = new PlayerQuitEvent(this.player, "");
 
         this.listener.onPlayerQuit(event);
@@ -162,7 +162,7 @@ public class EnderChestListenerTest {
     }
 
     @Test
-    public void worldSaveSaveContext() throws TestInitializationException {
+    void worldSaveSaveContext() throws TestInitializationException {
         WorldSaveEvent event = new WorldSaveEvent(this.player.getWorld());
 
         // Do nothing by default

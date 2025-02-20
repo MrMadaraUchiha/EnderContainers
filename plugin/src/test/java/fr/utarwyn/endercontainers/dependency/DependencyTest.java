@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 public class DependencyTest {
 
     @Test
-    public void create() {
+    void create() {
         Plugin plugin = mock(Plugin.class);
         Dependency dependency = new DependencyMock(plugin);
 

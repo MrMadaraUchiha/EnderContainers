@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class PluginMsgTest {
+class PluginMsgTest {
 
     @Mock
     private Player player;
@@ -30,25 +30,25 @@ public class PluginMsgTest {
     }
 
     @Test
-    public void errorMessage() {
+    void errorMessage() {
         PluginMsg.errorMessage(this.player, LocaleKey.CMD_NO_UPDATE);
         verify(this.player).sendMessage(startsWith("§c"));
     }
 
     @Test
-    public void successMessage() {
+    void successMessage() {
         PluginMsg.successMessage(this.player, LocaleKey.CMD_NO_UPDATE);
         verify(this.player).sendMessage(startsWith("§a"));
     }
 
     @Test
-    public void infoMessage() {
+    void infoMessage() {
         PluginMsg.infoMessage(this.player, LocaleKey.CMD_NO_UPDATE);
         verify(this.player).sendMessage(startsWith("§7"));
     }
 
     @Test
-    public void accessDenied() {
+    void accessDenied() {
         PluginMsg.accessDenied(this.player);
         verify(this.player).sendMessage(contains("don't have the permission"));
         PluginMsg.accessDenied(this.console);
@@ -56,13 +56,13 @@ public class PluginMsgTest {
     }
 
     @Test
-    public void pluginBar() {
+    void pluginBar() {
         PluginMsg.pluginBar(this.console);
         verify(this.console).sendMessage(contains("EnderContainers"));
     }
 
     @Test
-    public void endBar() {
+    void endBar() {
         PluginMsg.endBar(this.console);
         verify(this.console).sendMessage(contains("++"));
     }

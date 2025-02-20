@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class OpenCommandTest extends CommandTestHelper<OpenCommand> {
+class OpenCommandTest extends CommandTestHelper<OpenCommand> {
 
     @Mock
     private EnderChestManager manager;
@@ -50,19 +50,19 @@ public class OpenCommandTest extends CommandTestHelper<OpenCommand> {
     }
 
     @Test
-    public void create() {
+    void create() {
         assertThat(this.command.getName()).isEqualTo("open");
     }
 
     @Test
-    public void disableInConsole() {
+    void disableInConsole() {
         ConsoleCommandSender sender = mock(ConsoleCommandSender.class);
         this.run(sender, "test");
         verify(sender).sendMessage(contains("player"));
     }
 
     @Test
-    public void disabledWorld() {
+    void disabledWorld() {
         this.givePermission(this.player);
         when(this.player.getWorld().getName()).thenReturn("disabled");
 
@@ -73,14 +73,14 @@ public class OpenCommandTest extends CommandTestHelper<OpenCommand> {
     }
 
     @Test
-    public void openMainChest() {
+    void openMainChest() {
         this.givePermission(this.player);
         this.run(this.player, this.player.getName());
         verify(this.context).openListInventory(this.player);
     }
 
     @Test
-    public void tabCompletion() {
+    void tabCompletion() {
         // No completions without permission
         assertThat(this.tabComplete(this.player, "")).isEmpty();
 
@@ -92,19 +92,19 @@ public class OpenCommandTest extends CommandTestHelper<OpenCommand> {
     }
 
     @Test
-    public void noPermission() {
+    void noPermission() {
         this.run(this.player, "test");
         this.verifyNoPerm(this.player);
     }
 
     @Test
-    public void errorArgumentCount() {
+    void errorArgumentCount() {
         this.run(this.player);
         verify(this.player).sendMessage(contains("argument count"));
     }
 
     @Test
-    public void errorPlayerNotFound() {
+    void errorPlayerNotFound() {
         this.givePermission(this.player);
         this.run(this.player, "unknown");
         verify(this.player).sendMessage(contains("not found"));

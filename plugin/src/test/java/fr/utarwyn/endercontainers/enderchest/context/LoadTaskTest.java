@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class LoadTaskTest {
+class LoadTaskTest {
 
     private UUID uuid;
 
@@ -54,7 +54,7 @@ public class LoadTaskTest {
     }
 
     @Test
-    public void run() throws TestInitializationException {
+    void run() throws TestInitializationException {
         when(playerData.getEnderchestContents(any())).thenReturn(new ConcurrentHashMap<>());
         when(this.storageManager.createPlayerDataStorage(any())).thenReturn(playerData);
 
@@ -64,7 +64,7 @@ public class LoadTaskTest {
     }
 
     @Test
-    public void loadError() throws TestInitializationException {
+    void loadError() throws TestInitializationException {
         Logger initialLogger = TestHelper.getPlugin().getLogger();
         Logger logger = mock(Logger.class);
         when(TestHelper.getPlugin().getLogger()).thenReturn(logger);
