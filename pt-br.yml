@@ -1,0 +1,84 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#   EnderContainers locale em português   #
+#   Versão: 2.3.0-dev                     #
+#   Um plugin de Baús do Fim por Utarwyn  #
+# # # # # # # # # # # # # # # # # # # # # #
+
+##                 ##
+#  Localização de comandos  #
+##                 ##
+commands:
+
+  backups:
+    created: '&aBackup &b%backup%&a foi criado.'
+    creation_starting: 'Iniciando a criação do backup em segundo plano...'
+    exists: 'Backup &6%backup% &cjá existe. Por favor, escolha outro nome.'
+    info: '&6%command% &7para mais informações sobre um backup.'
+    loaded: '&aSucesso! Backup &b%backup%&a foi carregado!'
+    loading_starting: 'Iniciando o carregamento do backup em segundo plano...'
+    removed: '&aBackup &b%backup%&a foi removido com todos os seus dados.'
+    unknown: 'Backup &6%backup%&c não encontrado.'
+    zero: '&cNenhum backup encontrado. Crie seu primeiro backup agora!'
+
+    label_name: 'Nome'
+    label_date: 'Data de criação'
+    label_by: 'Criado por'
+    label_loadcmd: '&8Para aplicar este backup'
+    label_rmcmd: '&8Para remover este backup'
+
+  config_reloaded: 'Configuração recarregada!'
+  update: '&6EnderContainers &cnão está atualizado! A versão mais recente é &e%version%&c. Digite &3ecp update &cno console e siga as instruções.'
+  no_update: 'O plugin está atualizado! Sua versão é &e%version%&7.'
+
+
+##              ##
+#  Localização dos menus  #
+##              ##
+menus:
+
+  main_title: 'Baús do Fim de %player%'
+  chest_title: 'Baú do Fim %num% de %player%'
+
+  chest_item_accessible_title: '&aBaú do Fim %num% %counter%'
+  chest_item_inaccessible_title: '&cBaú do Fim %num%'
+
+  chest_empty: '&2Este Baú do Fim está vazio!'
+  chest_full: '&cInventário cheio!'
+  chest_locked: '&8&o>> Baú do Fim bloqueado!'
+
+  previous_page: '&c≪ Página anterior'
+  next_page: '&cPróxima página ≫'
+
+
+##               ##
+#  Localização de erros  #
+##               ##
+errors:
+
+  noperm_open_chest: 'Você não pode abrir este Baú do Fim!'
+  noperm_console: 'Você precisa ser um jogador para fazer isso!'
+  noperm_player: 'Você não tem permissão para fazer isso!'
+  player_not_found: 'Jogador &6%playername% &cnão encontrado.'
+  plugin_reload_error: 'Erro ao recarregar a configuração! Verifique o log do servidor para mais informações.'
+  plugin_world_disabled: 'O plugin está desativado neste mundo.'
+  cmd_invalid_parameter: 'O parâmetro &6%param% &cnão é válido.'
+  cmd_wrong_argument_count: 'Número de argumentos incorreto. &6/ecp help &cpara exibir a ajuda do plugin!'
+
+
+##                     ##
+#  Localização de dependências  #
+##                     ##
+dependencies:
+
+  # Plugin de Factions
+  access_denied_factions: 'Você não pode usar o Baú do Fim no território de %faction%!'
+  # Plugin PlotSquared
+  access_denied_plotsq: 'Você não pode usar o Baú do Fim neste terreno!'
+
+
+##                      ##
+#  Localização de diversos  #
+##                      ##
+miscellaneous:
+
+  chest_nametag: '&6&l%enderchests%/%maxenderchests%&r&e baú%plural% do fim disponível(is)'
